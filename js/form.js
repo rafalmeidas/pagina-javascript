@@ -1,3 +1,9 @@
+function seletor(nome){
+    let seletor = document.querySelector(nome);
+
+    return seletor;
+}
+
 let botaoAdicionar = document.querySelector("#adicionar-paciente");
 
 botaoAdicionar.addEventListener("click", function (event) {
@@ -10,12 +16,34 @@ botaoAdicionar.addEventListener("click", function (event) {
 
     let pacienteTr = montaTr(paciente);
 
+    let erros = validaPaciente(paciente);
+    console.log(erros);
+    
+    if(erros.length > 0){
+        exibiMensagensDeErro(erros);
+        return;
+    }
+
     //Adiconando paciente a tabela
     tabelaPacientes = document.querySelector("#tabela-pacientes");
     tabelaPacientes.appendChild(pacienteTr)
-
+    
     form.reset();
+    let ul = seletor("#mensagens-erro");
+    ul.innerHTML = "";
 });
+
+function exibiMensagensDeErro(erros){
+    let ul = seletor("#mensagens-erro");
+
+    ul.innerHTML = "";
+
+    erros.forEach(function(erro) {
+        let li = document.createElement("li");
+        li.textContent = erro;
+        ul.appendChild(li);
+    });
+}
 
 function obtemPacienteDoFormulario(form) {
     //Extraindo informações do paciente do form e criando objeto paciente
@@ -45,10 +73,40 @@ function montaTr(paciente) {
 }
 
 //Função que cria uma td
-function montaTd(dado, classe){
+function montaTd(dado, classe) {
     let td = document.createElement("td");
     td.textContent = dado;
     td.classList.add(classe);
-    
+
     return td;
+}
+
+function validaPaciente(paciente) {
+
+    let erros = [];
+
+    if(paciente.nome.length == 0){
+        erros.push("O nome deve ser preenchido!");
+    }
+    if (!validaPeso(paciente.peso)) {
+        erros.push("O peso é inválido");
+    }
+
+    if (!validaAltura(paciente.altura)) {
+        erros.push("A altura é inválida");
+    }
+
+    if(paciente.gordura.length == 0){
+        erros.push("A gordura deve ser preenchida!");
+    }
+
+    if(paciente.peso.length == 0){
+        erros.push("O peso deve ser preenchido!");
+    }
+
+    if(paciente.altura.length == 0){
+        erros.push("A altura deve ser preenchida!");
+    }
+
+    return erros;
 }
