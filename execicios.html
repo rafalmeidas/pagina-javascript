@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input class="frase"><button class="botao">Copiar</button><span class="copia"></span>
+    <script>
+        var inputFrase = document.querySelector('.frase');
+        var botao = document.querySelector('.botao');
+        var copia = document.querySelector('.copia');
+
+        function botaoHandler() {
+            copia.textContent = inputFrase.value;
+            inputFrase.value = "";
+        }
+
+        botao.addEventListener('click', botaoHandler);
+    </script>
+
+</body>
+
+</html>
