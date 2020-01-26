@@ -1,27 +1,27 @@
-let titulo = document.querySelector(".titulo");
+var titulo = document.querySelector(".titulo");
 titulo.textContent = "Aparecida Nutricionista";
 
 //Todas as linhas da tabela usando a classe paciente
-let pacientes = document.querySelectorAll(".paciente");
+var pacientes = document.querySelectorAll(".paciente");
 //console.log(pacientes);
 
-for (let i = 0; i < pacientes.length; i++) {
+for (var i = 0; i < pacientes.length; i++) {
     //Adiciona a variavel o paciente correto em ordem do for
-    let paciente = pacientes[i];
+    var paciente = pacientes[i];
 
     //Dados do peso
-    let tdPeso = paciente.querySelector(".info-peso");
-    let peso = tdPeso.textContent;
+    var tdPeso = paciente.querySelector(".info-peso");
+    var peso = tdPeso.textContent;
 
     //Dados da altura
-    let tdAltura = paciente.querySelector(".info-altura");
-    let altura = tdAltura.textContent;
+    var tdAltura = paciente.querySelector(".info-altura");
+    var altura = tdAltura.textContent;
 
     //Dados do imc
-    let tdImc = paciente.querySelector(".info-imc");
+    var tdImc = paciente.querySelector(".info-imc");
 
-    let pesoEValido = validaPeso(peso);
-    let alturaEValida = validaAltura(altura);
+    var pesoEValido = validaPeso(peso);
+    var alturaEValida = validaAltura(altura);
 
     if (!pesoEValido) {
         console.log("peso inválido");
@@ -38,7 +38,7 @@ for (let i = 0; i < pacientes.length; i++) {
     }
 
     if (pesoEValido && alturaEValida) {
-        let imc = calculaImc(peso, altura); //Calculo IMC
+        var imc = calculaImc(peso, altura); //Calculo IMC
         tdImc.textContent = imc
     }
 
@@ -46,7 +46,7 @@ for (let i = 0; i < pacientes.length; i++) {
 
 //Função para calcular imc
 function calculaImc(peso, altura){
-    let imc = peso / (altura * altura);
+    var imc = peso / (altura * altura);
     return imc.toFixed(2); //Limita em duas casas decimais;
 }
 

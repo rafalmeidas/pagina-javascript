@@ -1,22 +1,22 @@
 function seletor(nome){
-    let seletor = document.querySelector(nome);
+    var seletor = document.querySelector(nome);
 
     return seletor;
 }
 
-let botaoAdicionar = document.querySelector("#adicionar-paciente");
+var botaoAdicionar = document.querySelector("#adicionar-paciente");
 
 botaoAdicionar.addEventListener("click", function (event) {
     //Retira o padrão do formulario que seria recarregar a página, dessa forma não ocorre essa atualização da pág
     event.preventDefault();
 
-    let form = document.querySelector("#form-adiciona");
+    var form = document.querySelector("#form-adiciona");
 
-    let paciente = obtemPacienteDoFormulario(form);
+    var paciente = obtemPacienteDoFormulario(form);
 
-    let pacienteTr = montaTr(paciente);
+    var pacienteTr = montaTr(paciente);
 
-    let erros = validaPaciente(paciente);
+    var erros = validaPaciente(paciente);
     console.log(erros);
     
     if(erros.length > 0){
@@ -29,17 +29,17 @@ botaoAdicionar.addEventListener("click", function (event) {
     tabelaPacientes.appendChild(pacienteTr)
     
     form.reset();
-    let ul = seletor("#mensagens-erro");
+    var ul = seletor("#mensagens-erro");
     ul.innerHTML = "";
 });
 
 function exibiMensagensDeErro(erros){
-    let ul = seletor("#mensagens-erro");
+    var ul = seletor("#mensagens-erro");
 
     ul.innerHTML = "";
 
     erros.forEach(function(erro) {
-        let li = document.createElement("li");
+        var li = document.createElement("li");
         li.textContent = erro;
         ul.appendChild(li);
     });
@@ -47,7 +47,7 @@ function exibiMensagensDeErro(erros){
 
 function obtemPacienteDoFormulario(form) {
     //Extraindo informações do paciente do form e criando objeto paciente
-    let paciente = {
+    var paciente = {
         nome: form.nome.value,
         peso: form.peso.value,
         altura: form.altura.value,
@@ -59,7 +59,7 @@ function obtemPacienteDoFormulario(form) {
 
 function montaTr(paciente) {
     //Criando <tr> com javascript
-    let pacienteTr = document.createElement("tr");
+    var pacienteTr = document.createElement("tr");
     pacienteTr.classList.add("paciente");
 
     //Função appendChild adiciona um filho a uma tr por exemplo
@@ -74,7 +74,7 @@ function montaTr(paciente) {
 
 //Função que cria uma td
 function montaTd(dado, classe) {
-    let td = document.createElement("td");
+    var td = document.createElement("td");
     td.textContent = dado;
     td.classList.add(classe);
 
@@ -83,7 +83,7 @@ function montaTd(dado, classe) {
 
 function validaPaciente(paciente) {
 
-    let erros = [];
+    var erros = [];
 
     if(paciente.nome.length == 0){
         erros.push("O nome deve ser preenchido!");
