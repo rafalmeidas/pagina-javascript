@@ -1,5 +1,5 @@
-function seletor(nome){
-    var seletor = document.querySelector(nome);
+function seletor(nomee){
+    var seletor = document.querySelector(nomee);
 
     return seletor;
 }
@@ -14,7 +14,7 @@ botaoAdicionar.addEventListener("click", function (event) {
 
     var paciente = obtemPacienteDoFormulario(form);
 
-    var pacienteTr = montaTr(paciente);
+    
 
     var erros = validaPaciente(paciente);
     console.log(erros);
@@ -25,13 +25,18 @@ botaoAdicionar.addEventListener("click", function (event) {
     }
 
     //Adiconando paciente a tabela
-    tabelaPacientes = document.querySelector("#tabela-pacientes");
-    tabelaPacientes.appendChild(pacienteTr)
+    adicionaPacienteNaTabela(paciente);
     
     form.reset();
     var ul = seletor("#mensagens-erro");
     ul.innerHTML = "";
 });
+
+function adicionaPacienteNaTabela(paciente){
+    var pacienteTr = montaTr(paciente);
+    tabelaPacientes = document.querySelector("#tabela-pacientes");
+    tabelaPacientes.appendChild(pacienteTr);
+}
 
 function exibiMensagensDeErro(erros){
     var ul = seletor("#mensagens-erro");
